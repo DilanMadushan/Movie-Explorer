@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { findMovieById } from "../slice/MovieDetailSlice";
 import { useParams } from "react-router-dom";
@@ -11,12 +11,16 @@ import {
   Divider,
   Rating,
   Avatar,
+  IconButton,
 } from "@mui/material";
+import { Favorite, FavoriteBorder } from "@mui/icons-material";
 
 const Movie = () => {
   const dispatch = useDispatch();
   const movieDetail = useSelector((state) => state.movieDetailes);
   const { id } = useParams();
+
+  const [liked, setLiked] = useState(false); // Heart icon toggle
 
   useEffect(() => {
     if (!movieDetail || movieDetail.id !== parseInt(id)) {
@@ -78,6 +82,14 @@ const Movie = () => {
             <Typography variant="body2">
               {movieDetail?.vote_average.toFixed(1)} / 10
             </Typography>
+
+            <IconButton onClick={() =>{setLiked(!liked),}}>
+              {liked ? (
+                <Favorite sx={{ color: "red" }} />
+              ) : (
+                <FavoriteBorder sx={{ color: "white" }} />
+              )}
+            </IconButton>
           </Box>
 
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
@@ -109,7 +121,6 @@ const Movie = () => {
                   display: "flex",
                   alignItems: "center",
                   gap: 1,
-                //   backgroundColor: "#222",
                   p: 1,
                   borderRadius: 2,
                 }}
@@ -121,7 +132,9 @@ const Movie = () => {
                     sx={{ width: 40, height: 40, bgcolor: "#fff" }}
                   />
                 )}
-                <Typography variant="body2" sx={{width: '100px'}}>{company?.name} </Typography>
+                <Typography variant="body2" sx={{ width: "100px" }}>
+                  {company?.name}
+                </Typography>
               </Box>
             ))}
           </Box>
