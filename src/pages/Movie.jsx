@@ -14,19 +14,37 @@ import {
   IconButton,
 } from "@mui/material";
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
+import { addFavourite, removeFavourite } from "../slice/FavouriteSlice";
 
 const Movie = () => {
   const dispatch = useDispatch();
-  const movieDetail = useSelector((state) => state.movieDetailes);
   const { id } = useParams();
+  const movieDetail = useSelector((state) => state.movieDetailes);
+  const favourites = useSelector((state) => state.favourite);
 
-  const [liked, setLiked] = useState(false); // Heart icon toggle
+  const [liked, setLiked] = useState(false);
 
+  // Fetch movie details
   useEffect(() => {
     if (!movieDetail || movieDetail.id !== parseInt(id)) {
       dispatch(findMovieById(id));
     }
   }, [dispatch, id, movieDetail]);
+
+  // Sync liked status with Redux favourites
+  useEffect(() => {
+    const isLiked = favourites.some((fav) => fav.id === parseInt(id));
+    setLiked(isLiked);
+  }, [favourites, id]);
+
+  const handleToggleFavourite = () => {
+    if (liked) {
+      dispatch(removeFavourite(movieDetail));
+    } else {
+      dispatch(addFavourite(movieDetail));
+    }
+    setLiked(!liked);
+  };
 
   if (!movieDetail) {
     return (
@@ -83,7 +101,7 @@ const Movie = () => {
               {movieDetail?.vote_average.toFixed(1)} / 10
             </Typography>
 
-            <IconButton onClick={() =>{setLiked(!liked),}}>
+            <IconButton onClick={handleToggleFavourite}>
               {liked ? (
                 <Favorite sx={{ color: "red" }} />
               ) : (
@@ -138,6 +156,24 @@ const Movie = () => {
               </Box>
             ))}
           </Box>
+
+          {movieDetail.homepage && (
+            <Link
+              href={movieDetail.homepage}
+              target="_blank"
+              rel="noopener"
+              underline="hover"
+              sx={{
+                color: "white",
+                mt: 2,
+                cursor: "pointer",
+                textDecoration: "none",
+                marginBottom: 5,
+              }}
+            >
+              Visit Official Site
+            </Link>
+          )}
         </Box>
       </Box>
     </Container>

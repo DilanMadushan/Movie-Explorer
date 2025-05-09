@@ -8,6 +8,7 @@ import Movie from "./pages/Movie";
 import RootLayout from './components/RootLayout';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from './pages/Login';
+import FavouriteMovies from './pages/FavouriteMovies';
 
 function App() {
 
@@ -28,6 +29,10 @@ function App() {
         {
           path: "movie/:id",
           element: <Movie/>
+        },
+        {
+          path: "favourite",
+          element: <FavouriteMovies/>
         }
       ]
     }

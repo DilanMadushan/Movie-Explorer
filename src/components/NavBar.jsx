@@ -19,6 +19,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch, useSelector } from "react-redux";
 import { findMoviebyName, getAllMovies } from "../slice/MovieSlice";
+import { Link } from "react-router-dom";
 
 const StyledToolBar = styled(Toolbar)({
   display: "flex",
@@ -66,7 +67,12 @@ const findMovie = (movie) => {
     dispatch(findMoviebyName(movie));
 };
   const [open, setOpen] = useState(false);
-  const contentList = ["Home", "Trending", "Browse Movies"];
+
+  const contentList = [
+  { text: "Home", path: "/home" },
+  { text: "Trending", path: "/trending" },
+  { text: "Favorites", path: "/favourite" },
+];
 
   return (
     <AppBar position="sticky" sx={{ bgcolor: "#151414", overflowX: "hidden"}}>
@@ -97,7 +103,13 @@ const findMovie = (movie) => {
 
         <Content>
           {contentList.map((item) => (
-            <Typography key={item}>{item}</Typography>
+            <Link
+              to={item.path}
+              style={{ textDecoration: "none", color: "white" }}
+              key={item.text}
+            >
+              {item.text}
+            </Link>
           ))}
         </Content>
 

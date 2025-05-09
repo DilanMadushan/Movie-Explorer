@@ -47,7 +47,6 @@ const Home = () => {
               },
             }}
             onClick={() => {
-              // dispatch(findMovieById(movie.id));
               navigate(`/movie/${movie.id}`);
             }}
           >
