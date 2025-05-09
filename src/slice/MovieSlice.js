@@ -25,6 +25,23 @@ export const getAllMovies=createAsyncThunk(
     }
 );
 
+export const findMoviebyName = createAsyncThunk(
+    '/movie/search',
+    async (movie) => {
+      try {
+        const response = await api.get('/search/movie', {
+          params: {
+            api_key: API_KEY,
+            query: movie,
+          },
+        });
+        return response.data;
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  );
+
 const MovieSlice = createSlice({
     name:'movie',
     initialState,
@@ -40,8 +57,17 @@ const MovieSlice = createSlice({
         }),
         builder.addCase(getAllMovies.pending,(state,action)=>{
             console.log("pending.......");
-        })
-    }
+        }),
+    
+        builder.addCase(findMoviebyName.fulfilled, (state, action) => {
+            return action.payload.results;
+          }),
+          builder.addCase(findMoviebyName.rejected, (state, action) => {
+            console.log(action.payload);
+          }),
+          builder.addCase(findMoviebyName.pending, (state, action) => {
+            console.log("pending.......");
+          });}
 })
 
 export default MovieSlice.reducer;
