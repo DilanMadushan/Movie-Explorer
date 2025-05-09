@@ -12,11 +12,14 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMovies } from "../slice/MovieSlice";
 import { findMovieById } from '../slice/MovieDetailSlice';
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const dispatch = useDispatch();
 
   const movies = useSelector((state) => state.movie);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (movies.length === 0) {
@@ -44,7 +47,8 @@ const Home = () => {
               },
             }}
             onClick={() => {
-              dispatch(findMovieById(movie.id));
+              // dispatch(findMovieById(movie.id));
+              navigate(`/movie/${movie.id}`);
             }}
           >
             <CardMedia
