@@ -2,12 +2,20 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { findMovieById } from "../slice/MovieDetailSlice";
 import { useParams } from "react-router-dom";
-import { Container, Typography, Box, Link } from "@mui/material";
+import {
+  Container,
+  Typography,
+  Box,
+  Link,
+  Chip,
+  Divider,
+  Rating,
+  Avatar,
+} from "@mui/material";
 
 const Movie = () => {
   const dispatch = useDispatch();
   const movieDetail = useSelector((state) => state.movieDetailes);
-
   const { id } = useParams();
 
   useEffect(() => {
@@ -16,66 +24,110 @@ const Movie = () => {
     }
   }, [dispatch, id, movieDetail]);
 
+  if (!movieDetail) {
+    return (
+      <Box sx={{ padding: 5, color: "white", textAlign: "center" }}>
+        Loading movie details...
+      </Box>
+    );
+  }
+
   return (
-    //     <div style={{ padding: 20, color: 'white', backgroundColor: 'red' }}>
-    //     {movieDetail ? (
-    //       <div>
-    //         <h2>{movieDetail.title}</h2>
-    //         <p>{movieDetail.overview}</p>
-    //         <p><strong>Release Date:</strong> {movieDetail.release_date}</p>
-    //         <img
-    //           src={`https://image.tmdb.org/t/p/w500/${movieDetail.backdrop_path}`}
-    //           alt={movieDetail.title}
-    //           style={{ width: 300, borderRadius: 10 }}
-    //         />
-    //         <img
-    //           src={`https://image.tmdb.org/t/p/w500/${movieDetail.poster_path}`}
-    //           alt={movieDetail.title}
-    //           style={{ width: 300, borderRadius: 10 }}
-    //         />
-
-    //       </div>
-    //     ) : (
-    //       <p>Loading movie details...</p>
-    //     )}
-    //   </div>
-    <>
-      <Container>
-        <Typography
-          variant="h5"
-          color="initial"
-          sx={{ color: "white", fontSize: "30px", fontWeight: "bold" }}
-        >
-          {movieDetail?.title}
-        </Typography>
-
+    <Container maxWidth="lg" sx={{ marginTop: 5, color: "white" }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
+          gap: 4,
+          alignItems: "flex-start",
+        }}
+      >
         <Box
           component="img"
           src={`https://image.tmdb.org/t/p/w500/${movieDetail?.poster_path}`}
-          alt="My image"
+          alt={movieDetail?.title}
           sx={{
-            width: 300,
+            width: { xs: "100%", md: 300 },
             borderRadius: 2,
+            boxShadow: 5,
           }}
         />
 
-
-        <Typography variant="body1" color="initial" sx={{ color: "white" }}>
-          {movieDetail?.overview}
-        </Typography>
-        <Typography variant="body1" color="initial" sx={{ color: "white" }}>
-          <strong>Release Date:</strong> {movieDetail?.release_date}
-        </Typography>
-        <Box>
-          <Typography variant="p" color="initial" sx={{ color: "white" }}>
-            {movieDetail?.vote_average}
+        <Box sx={{ flex: 1, display: "flex", flexDirection: "column", gap: 2 }}>
+          <Typography variant="h4" sx={{ fontWeight: "bold" }}>
+            {movieDetail?.title} ({movieDetail?.release_date.slice(0, 4)})
           </Typography>
+
+          <Divider sx={{ backgroundColor: "#555" }} />
+
+          <Typography variant="body1" sx={{ textAlign: "justify" }}>
+            {movieDetail?.overview}
+          </Typography>
+
+          <Typography variant="body2">
+            <strong>Release Date:</strong> {movieDetail?.release_date}
+          </Typography>
+
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <Rating
+              name="read-only"
+              value={movieDetail?.vote_average / 2}
+              precision={0.1}
+              readOnly
+            />
+            <Typography variant="body2">
+              {movieDetail?.vote_average.toFixed(1)} / 10
+            </Typography>
+          </Box>
+
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
+            {movieDetail?.genres.map((genre) => (
+              <Chip
+                key={genre?.id}
+                label={genre?.name}
+                sx={{ backgroundColor: "#D20C0C", color: "white" }}
+              />
+            ))}
+          </Box>
+
+          <Divider sx={{ backgroundColor: "#555", my: 2 }} />
+          <Typography variant="h6" sx={{ mb: 1 }}>
+            Production Companies
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 2,
+              alignItems: "center",
+            }}
+          >
+            {movieDetail?.production_companies.map((company) => (
+              <Box
+                key={company?.id}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1,
+                //   backgroundColor: "#222",
+                  p: 1,
+                  borderRadius: 2,
+                }}
+              >
+                {company.logo_path && (
+                  <Avatar
+                    src={`https://image.tmdb.org/t/p/w200/${company?.logo_path}`}
+                    alt={company.name}
+                    sx={{ width: 40, height: 40, bgcolor: "#fff" }}
+                  />
+                )}
+                <Typography variant="body2" sx={{width: '100px'}}>{company?.name} </Typography>
+              </Box>
+            ))}
+          </Box>
         </Box>
-
-        <Link href={movieDetail?.homepage}>Link</Link>
-
-      </Container>
-    </>
+      </Box>
+    </Container>
   );
 };
 

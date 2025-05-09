@@ -81,11 +81,6 @@ const findMovie = (movie) => {
           </Typography>
         </Box>
 
-        {/* <SearchBar>
-          <SearchIcon sx={{ color: 'grey' }} />
-          <InputBase placeholder="Search..."  onChange={(e) => console.log(e.target.value)}/>
-        </SearchBar> */}
-
         <SearchBarModel>
           <SearchIcon sx={{ color: "grey" }} />
           <InputBase
