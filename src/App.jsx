@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import {Provider} from "react-redux";
 import Store from "./store/Store";
 import SearchBar from "./components/SearchBar";
+import Movie from "./pages/Movie";
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
         <NavBar/>
         {/* <SearchBar/> */}
           <Home/>
+          <Movie/>
       </Provider>
     </>
   )

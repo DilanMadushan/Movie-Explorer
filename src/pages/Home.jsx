@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMovies } from "../slice/MovieSlice";
+import { findMovieById } from '../slice/MovieDetailSlice';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -41,6 +42,9 @@ const Home = () => {
                 transform: "scale(1.03)",
                 transition: "0.3s",
               },
+            }}
+            onClick={() => {
+              dispatch(findMovieById(movie.id));
             }}
           >
             <CardMedia
