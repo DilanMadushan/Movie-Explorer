@@ -1,12 +1,64 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Movie Explorer 
 
-Currently, two official plugins are available:
+This document combines the information for the Movie Explorer web application.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🎬 Movie Explorer
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### *Discover Your Favorite Films*
+
+![Movie Explorer Banner](https://images8.alphacoders.com/122/1221309.jpg)
+
+Movie Explorer is a sleek and responsive web application designed to help you discover your favorite movies. Browse trending and popular titles, easily search for specific films, build your own list of favorite movies, and refine your search with powerful filtering options.
+
+### 🚀 Features
+
+- 🔥 Explore **Trending** and **Popular** movies.
+- 🔍 Quickly **Search** for movies by title.
+- ❤️ **Add to Favorites** and manage your personal watchlist.
+- 🎯 **Filter** movies based on:
+  - Name
+  - Genre
+  - Release Year
+  - Ratings
+
+### 🛠️ Technologies Used
+
+- ⚛️ **React** – Front-end UI library
+- 🔁 **Redux** – State management
+- 🌐 **Axios** – For API requests
+- 🎞️ **TMDB API** – Fetching movie data
+
+### 📸 Sample Screenshots
+
+#### 🎥 Trending Movies
+![Trending Movies](/src/assets/trending.png)
+
+#### 🔍 Search and Filters
+![Search and Filters](/src/assets/search.png)
+
+#### ❤️ Favorites Section
+![Favorites](/src/assets/favourite.png)
+
+### 🧪 Installation & Usage
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/yourusername/movie-explorer.git
+   cd movie-explorer
+   ```
+
+2. **Install dependencies:**
+
+   ```bash
+   npm install
+   ```
+3. **Run the development server:**
+
+   ```bash
+   npm run dev
+   ```
+

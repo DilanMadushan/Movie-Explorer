@@ -43,7 +43,7 @@ const Browse = () => {
           ml={3}
           sx={{ fontSize: { md: "40px", xs: "30px" } }}
         >
-          {hasSearched ? "Search Results" : "Top Rated Movies"}
+          {hasSearched ? "Search Results" : "Search Results"}
         </Typography>
 
         {moviesToRender.length === 0 ? (

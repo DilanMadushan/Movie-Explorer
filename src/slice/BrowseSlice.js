@@ -1,17 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// TMDB API setup
 const API_KEY = "27bd19d8fe0c86f850b375dbfe98c9cd";
 
 const api = axios.create({
   baseURL: "https://api.themoviedb.org/3/",
 });
 
-// Initial state: array of movies
 const initialState = [];
 
-// Thunk to fetch and filter movies
 export const browseMovie = createAsyncThunk(
   "movies/browse",
   async ({ searchText, genreId, year, rating }, { rejectWithValue }) => {
@@ -26,6 +23,7 @@ export const browseMovie = createAsyncThunk(
       };
 
       // If searchText is given, use search endpoint instead
+
       if (searchText && searchText.trim() !== "") {
         endpoint = "search/movie";
         params.query = searchText;
@@ -41,9 +39,15 @@ export const browseMovie = createAsyncThunk(
       // Manually filter if using search endpoint
       if (endpoint === "search/movie") {
         return results.filter((movie) => {
-          const matchesGenre = genreId ? movie.genre_ids.includes(Number(genreId)) : true;
-          const matchesYear = year ? movie.release_date?.startsWith(year.toString()) : true;
-          const matchesRating = rating ? movie.vote_average >= Number(rating) : true;
+          const matchesGenre = genreId
+            ? movie.genre_ids.includes(Number(genreId))
+            : true;
+          const matchesYear = year
+            ? movie.release_date?.startsWith(year.toString())
+            : true;
+          const matchesRating = rating
+            ? movie.vote_average >= Number(rating)
+            : true;
           return matchesGenre && matchesYear && matchesRating;
         });
       }
@@ -55,7 +59,6 @@ export const browseMovie = createAsyncThunk(
   }
 );
 
-// Slice
 const BrowseSlice = createSlice({
   name: "movie",
   initialState,

@@ -6,13 +6,13 @@ import TrengingMovieReducer from "../slice/TrandingSlice";
 import BrowserReducer from "../slice/BrowseSlice";
 
 const store = configureStore({
-    reducer:{
-        movie:MovieReducer,
-        movieDetailes:MovieDetailsReducer,
-        favourite:FavouriteReducer,
-        trending:TrengingMovieReducer,
-        browse:BrowserReducer
-    }
+  reducer: {
+    movie: MovieReducer,
+    movieDetailes: MovieDetailsReducer,
+    favourite: FavouriteReducer,
+    trending: TrengingMovieReducer,
+    browse: BrowserReducer,
+  },
 });
 
-export default store
+export default store;

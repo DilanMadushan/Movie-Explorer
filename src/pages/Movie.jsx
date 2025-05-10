@@ -23,7 +23,6 @@ const Movie = () => {
   const favourites = useSelector((state) => state.favourite);
   const [liked, setLiked] = useState(false);
 
-  // Fetch movie details
   useEffect(() => {
     if (!movieDetail || movieDetail.id !== parseInt(id)) {
       dispatch(findMovieById(id));
@@ -31,7 +30,6 @@ const Movie = () => {
     }
   }, [dispatch, id, movieDetail]);
 
-  // Sync liked status with Redux favourites
   useEffect(() => {
     const isLiked = favourites.some((fav) => fav.id === parseInt(id));
     setLiked(isLiked);

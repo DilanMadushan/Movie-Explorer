@@ -22,15 +22,20 @@ const Tranding = () => {
   }, [dispatch, trending?.length]);
 
   return (
-     <Container sx={{ py: 4, backgroundColor: "#1D1D1D" }}>
-      <Typography variant="h4" color="white" marginBottom={3} marginLeft={3} sx={{fontSize:{md:'40px',xs:'30px'}}}>
+    <Container sx={{ py: 4, backgroundColor: "#1D1D1D" }}>
+      <Typography
+        variant="h4"
+        color="white"
+        marginBottom={3}
+        marginLeft={3}
+        sx={{ fontSize: { md: "40px", xs: "30px" } }}
+      >
         Tranding Movies
       </Typography>
 
       {trending?.length === 0 ? (
         <Typography sx={{ color: "gray" }}>Loading...</Typography>
       ) : (
-
         <>
           <Grid container spacing={2} justifyContent="center">
             {trending?.map((movie) => (
@@ -45,7 +50,6 @@ const Tranding = () => {
             ))}
           </Grid>
         </>
-        
       )}
     </Container>
   );

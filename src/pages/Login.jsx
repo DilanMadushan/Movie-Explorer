@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Button,
-  TextField,
-  Typography,
-  Paper,
-} from "@mui/material";
+import { Box, Button, TextField, Typography, Paper } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -14,7 +8,7 @@ const Login = () => {
     <Box
       sx={{
         height: "100vh",
-        backgroundImage: `url(https://images8.alphacoders.com/122/1221309.jpg)`, // Replace with your movie poster URL
+        backgroundImage: `url(https://images8.alphacoders.com/122/1221309.jpg)`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         position: "relative",
@@ -49,7 +43,12 @@ const Login = () => {
       >
         <Typography
           variant="h4"
-          sx={{ color: "white", fontWeight: "bold", mb: 3, textAlign: "center" }}
+          sx={{
+            color: "white",
+            fontWeight: "bold",
+            mb: 3,
+            textAlign: "center",
+          }}
         >
           Sign In
         </Typography>
@@ -142,9 +141,12 @@ const Login = () => {
           Login
         </Button>
 
-        <Typography sx={{ mt: 2, color: "#888", fontSize: "14px", textAlign: "center" }}>
+        <Typography
+          sx={{ mt: 2, color: "#888", fontSize: "14px", textAlign: "center" }}
+        >
           New to Movie Explorer?{" "}
-          <span style={{ color: "white", cursor: "pointer" }}>Sign up now</span>.
+          <span style={{ color: "white", cursor: "pointer" }}>Sign up now</span>
+          .
         </Typography>
       </Paper>
     </Box>

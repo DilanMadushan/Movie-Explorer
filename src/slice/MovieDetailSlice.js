@@ -10,27 +10,31 @@ const api = axios.create({
 const initialState = null;
 
 export const findMovieById = createAsyncThunk(
-  'movieDetail/findById',
+  "movieDetail/findById",
   async (id) => {
     try {
       const details = await api.get(`/movie/${id}`, {
         params: {
           api_key: API_KEY,
-        }
+        },
       });
 
       const cast = await api.get(`/movie/${id}/credits`, {
         params: {
           api_key: API_KEY,
-        }
+        },
       });
 
       const trilers = await api.get(`/movie/${id}/videos`, {
         params: {
           api_key: API_KEY,
-        }
-      })
-      return { ...details.data, cast: cast.data.cast, trilers: trilers.data.results };
+        },
+      });
+      return {
+        ...details.data,
+        cast: cast.data.cast,
+        trilers: trilers.data.results,
+      };
     } catch (error) {
       console.error("Failed to fetch movie:", error);
       throw error;

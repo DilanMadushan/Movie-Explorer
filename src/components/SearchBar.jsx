@@ -100,7 +100,7 @@ const SearchBar = () => {
   return (
     <SearchContainer sx={{position: "sticky", top: 63, zIndex: 1}}>
       <Container maxWidth="md">
-        {/* Search bar */}
+     
         <SearchBarModel>
           <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1 }}>
             <SearchIcon sx={{ color: "grey", mr: 1 }} />
@@ -136,7 +136,6 @@ const SearchBar = () => {
           </Button>
         </SearchBarModel>
 
-        {/* Filters */}
         <Box
           mt={3}
           sx={{
