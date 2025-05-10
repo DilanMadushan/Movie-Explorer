@@ -13,13 +13,14 @@ import CustomCard from "../components/Card";
 const FavouriteMovies = () => {
   const favourites = useSelector((state) => state.favourite);
 
-  return (<Container sx={{ py: 4, backgroundColor: "#1D1D1D" }}>
+  return (
+  <Container sx={{ py: 4, backgroundColor: "#1D1D1D" }}>
       <Typography variant="h4" color="white" marginBottom={3} marginLeft={3} sx={{fontSize:{md:'40px',xs:'30px'}}}>
         Top Reted Movies
       </Typography>
 
       {favourites.length === 0 ? (
-        <Typography sx={{ color: "gray" }}>
+        <Typography marginLeft={3} sx={{ color: "gray" } }>
           You haven't added any favorites yet.
         </Typography>
       ) : (
