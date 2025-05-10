@@ -98,7 +98,7 @@ const SearchBar = () => {
   };
 
   return (
-    <SearchContainer>
+    <SearchContainer sx={{position: "sticky", top: 63, zIndex: 1}}>
       <Container maxWidth="md">
         {/* Search bar */}
         <SearchBarModel>

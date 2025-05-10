@@ -28,7 +28,6 @@ const Movie = () => {
     if (!movieDetail || movieDetail.id !== parseInt(id)) {
       dispatch(findMovieById(id));
       console.log(movieDetail);
-      
     }
   }, [dispatch, id, movieDetail]);
 
@@ -57,7 +56,6 @@ const Movie = () => {
 
   return (
     <Container maxWidth="lg" sx={{ marginTop: 5, color: "white" }}>
-      
       <Box
         sx={{
           display: "flex",
@@ -66,31 +64,28 @@ const Movie = () => {
           alignItems: "flex-start",
         }}
       >
-        
-        <Box sx={{display: "flex", flexDirection: "column", gap: 2 }}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+          <Box
+            component="img"
+            src={`https://image.tmdb.org/t/p/w500/${movieDetail?.poster_path}`}
+            alt={movieDetail?.title}
+            sx={{
+              width: { xs: "100%", md: 300 },
+              borderRadius: 2,
+              boxShadow: 5,
+            }}
+          />
 
           <Box
-          component="img"
-          src={`https://image.tmdb.org/t/p/w500/${movieDetail?.poster_path}`}
-          alt={movieDetail?.title}
-          sx={{
-            width: { xs: "100%", md: 300 },
-            borderRadius: 2,
-            boxShadow: 5,
-          }}
-        />
-
-        <Box
-          component="img"
-          src={`https://image.tmdb.org/t/p/w500/${movieDetail?.backdrop_path}`}
-          alt={movieDetail?.title}
-          sx={{
-            width: { xs: "100%", md: 300 },
-            borderRadius: 2,
-            boxShadow: 5,
-          }}
-        />
-
+            component="img"
+            src={`https://image.tmdb.org/t/p/w500/${movieDetail?.backdrop_path}`}
+            alt={movieDetail?.title}
+            sx={{
+              width: { xs: "100%", md: 300 },
+              borderRadius: 2,
+              boxShadow: 5,
+            }}
+          />
         </Box>
 
         <Box sx={{ flex: 1, display: "flex", flexDirection: "column", gap: 2 }}>
@@ -138,45 +133,6 @@ const Movie = () => {
             ))}
           </Box>
 
-          {/* <Divider sx={{ backgroundColor: "#555", my: 2 }} />
-
-          <Typography variant="h6" sx={{ mb: 1 }}>
-            Production Companies
-          </Typography>
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 2,
-              alignItems: "center",
-            }}
-          >
-            {movieDetail?.production_companies?.map((company) => (
-              <Box
-                key={company?.id}
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 1,
-                  p: 1,
-                  borderRadius: 2,
-                }}
-              >
-                {company.logo_path && (
-                  <Avatar
-                    src={`https://image.tmdb.org/t/p/w200/${company?.logo_path}`}
-                    alt={company.name}
-                    sx={{ width: 40, height: 40, bgcolor: "#fff" }}
-                  />
-                )}
-                <Typography variant="body2" sx={{ width: "100px" }}>
-                  {company?.name}
-                </Typography>
-              </Box>
-            ))}
-          </Box> */}
-
-          {/* Cast Section */}
           {movieDetail.cast && movieDetail.cast.length > 0 && (
             <>
               <Divider sx={{ backgroundColor: "#555", my: 2 }} />
@@ -228,37 +184,36 @@ const Movie = () => {
       </Box>
 
       {movieDetail?.trilers?.length > 0 && (
-  <Box sx={{ mb: 4 }}>
-    <Typography variant="h5" sx={{ mb: 2 }}>
-      Official Trailer
-    </Typography>
-    <Box
-      sx={{
-        position: "relative",
-        paddingTop: "56.25%", // 16:9 aspect ratio
-        borderRadius: 2,
-        overflow: "hidden",
-        boxShadow: 5,
-      }}
-    >
-      <iframe
-        src={`https://www.youtube.com/embed/${movieDetail.trilers[0].key}`}
-        title={movieDetail.trilers[0].name}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          border: "none",
-        }}
-      />
-    </Box>
-  </Box>
-)}
-
+        <Box sx={{ mb: 4 }}>
+          <Typography variant="h5" sx={{ mb: 2 }}>
+            Official Trailer
+          </Typography>
+          <Box
+            sx={{
+              position: "relative",
+              paddingTop: "56.25%", // 16:9 aspect ratio
+              borderRadius: 2,
+              overflow: "hidden",
+              boxShadow: 5,
+            }}
+          >
+            <iframe
+              src={`https://www.youtube.com/embed/${movieDetail.trilers[0].key}`}
+              title={movieDetail.trilers[0].name}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                border: "none",
+              }}
+            />
+          </Box>
+        </Box>
+      )}
     </Container>
   );
 };

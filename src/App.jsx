@@ -10,6 +10,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from './pages/Login';
 import FavouriteMovies from './pages/FavouriteMovies';
 import Trending from './pages/Trending';
+import Browse from './pages/Browse';
 
 function App() {
 
@@ -37,6 +38,10 @@ function App() {
         },{
           path: "/trending",
           element: <Trending/>
+        },
+        {
+          path: "/browse",
+          element: <Browse/>
         }
       ]
     }

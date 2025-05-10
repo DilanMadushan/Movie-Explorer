@@ -14,19 +14,24 @@ const FavouriteMovies = () => {
   const favourites = useSelector((state) => state.favourite);
 
   return (
-  <Container sx={{ py: 4, backgroundColor: "#1D1D1D"}}>
-      <Typography variant="h4" color="white" marginBottom={3} marginLeft={3} sx={{fontSize:{md:'40px',xs:'30px'}}}>
+    <Container sx={{ py: 4, backgroundColor: "#1D1D1D" }}>
+      <Typography
+        variant="h4"
+        color="white"
+        marginBottom={3}
+        marginLeft={3}
+        sx={{ fontSize: { md: "40px", xs: "30px" } }}
+      >
         Your Favourite Movies
       </Typography>
 
       {favourites.length === 0 ? (
-        <Typography marginLeft={3} sx={{ color: "gray" } }>
+        <Typography marginLeft={3} sx={{ color: "gray" }}>
           You haven't added any favorites yet.
         </Typography>
       ) : (
-
         <>
-          <Grid container spacing={2} justifyContent="center" >
+          <Grid container spacing={2} justifyContent="center">
             {favourites.map((movie) => (
               <CustomCard
                 id={movie.id}
@@ -39,10 +44,8 @@ const FavouriteMovies = () => {
             ))}
           </Grid>
         </>
-        
       )}
     </Container>
-    
   );
 };
 

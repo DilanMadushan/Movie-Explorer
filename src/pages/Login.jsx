@@ -24,7 +24,6 @@ const Login = () => {
         px: 2,
       }}
     >
-      {/* Dark overlay */}
       <Box
         sx={{
           position: "absolute",

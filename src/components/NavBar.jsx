@@ -34,7 +34,7 @@ const SearchBarModel = styled(Box)(({ theme }) => ({
   alignItems: "center",
   gap: "10px",
   boxShadow: "0 0 10px rgba(194, 194, 194, 0.1)",
-  width: "50%",
+  width: "40%",
   [theme.breakpoints.down("md")]: {
     display: "none",
   },
@@ -80,8 +80,8 @@ const NavBar = () => {
   const contentList = [
     { text: "Home", path: "/home" },
     { text: "Trending", path: "/trending" },
-    { text: "Favorites", path: "/favourite" },
-    { text: "Browse", path: "/browse" },
+     { text: "Browse", path: "/browse" },
+    { text: "Favorites", path: "/favourite" }
   ];
 
   return (
@@ -103,7 +103,7 @@ const NavBar = () => {
           <SearchIcon sx={{ color: "grey" }} />
           <InputBase
             placeholder="Search movies..."
-            fullWidth
+            // fullWidth
             onChange={(e) => findMovie(e.target.value)}
             sx={{
               height: "45px",
