@@ -9,6 +9,7 @@ import RootLayout from './components/RootLayout';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from './pages/Login';
 import FavouriteMovies from './pages/FavouriteMovies';
+import Trending from './pages/Trending';
 
 function App() {
 
@@ -33,6 +34,9 @@ function App() {
         {
           path: "favourite",
           element: <FavouriteMovies/>
+        },{
+          path: "/trending",
+          element: <Trending/>
         }
       ]
     }

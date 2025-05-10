@@ -8,12 +8,10 @@ import {
   CardMedia,
   CardContent,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import CustomCard from "../components/Card";
 
 const FavouriteMovies = () => {
   const favourites = useSelector((state) => state.favourite);
-
-  const navigate = useNavigate();
 
   return (
     <Container sx={{ marginTop: 4 }}>
@@ -29,22 +27,14 @@ const FavouriteMovies = () => {
         <Grid container spacing={3}>
           {favourites.map((movie) => (
             <Grid item xs={12} sm={6} md={4} key={movie.id}>
-              <Card sx={{ backgroundColor: "#1e1e1e", color: "white" }}onClick={() => {
-              navigate(`/movie/${movie.id}`);
-            }} >
-                <CardMedia
-                  component="img"
-                  image={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                  alt={movie.title}
-                  height="400"
-                />
-                <CardContent>
-                  <Typography variant="h6">{movie.title}</Typography>
-                  <Typography variant="body2" color="gray">
-                    {movie.release_date}
-                  </Typography>
-                </CardContent>
-              </Card>
+              <CustomCard
+              id={movie.id}
+              poster_path={movie.poster_path}
+              title={movie.title}
+              release_date={movie.release_date}
+              vote_average={movie.vote_average}
+              overview={movie.overview}
+            />
             </Grid>
           ))}
         </Grid>
