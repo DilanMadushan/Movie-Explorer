@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllMovies } from "../slice/MovieSlice";
 import { useNavigate } from "react-router-dom";
 import CustomCard from "../components/Card";
+import SearchBar from "../components/SearchBar";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,9 @@ const Home = () => {
   }, [dispatch, movies?.length]);
 
   return (
-    <Container sx={{ py: 4, backgroundColor: "#1D1D1D" }}>
+  <>
+  <SearchBar></SearchBar>
+  <Container sx={{ py: 4, backgroundColor: "#1D1D1D" }}>
       <Typography
         variant="h4"
         color="white"
@@ -52,6 +55,8 @@ const Home = () => {
         </Grid>
       )}
     </Container>
+  </>
+    
   );
 };
 

@@ -19,6 +19,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useDispatch } from "react-redux";
 import { findMoviebyName } from "../slice/MovieSlice";
 import { Link } from "react-router-dom";
+import SearchBar from "./SearchBar";
 
 const StyledToolBar = styled(Toolbar)({
   display: "flex",
@@ -80,9 +81,11 @@ const NavBar = () => {
     { text: "Home", path: "/home" },
     { text: "Trending", path: "/trending" },
     { text: "Favorites", path: "/favourite" },
+    { text: "Browse", path: "/browse" },
   ];
 
   return (
+    <>
     <AppBar position="sticky" sx={{ bgcolor: "#151414", px: 2 }}>
       <StyledToolBar>
         <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
@@ -188,6 +191,8 @@ const NavBar = () => {
         </Box>
       </Drawer>
     </AppBar>
+    </>
+    
   );
 };
 

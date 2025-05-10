@@ -45,10 +45,6 @@ function App() {
   return (
     <>
       <Provider store={Store}>
-        {/* <NavBar/> */}
-        <SearchBar/>
-          {/* <Home/>
-          <Movie/> */}
           <RouterProvider router={router} />
       </Provider>
     </>

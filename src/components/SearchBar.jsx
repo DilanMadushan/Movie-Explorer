@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import {
   Box,
   Container,
@@ -9,15 +10,16 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import styled from "styled-components";
+import {browseMovie} from "../slice/BrowseSlice";
+import { useDispatch } from "react-redux";
 
-// Container wrapper
+// Styled components
 const SearchContainer = styled(Box)`
   background-color: #151414;
   padding: 40px 0;
   color: white;
 `;
 
-// Search bar and button row
 const SearchBarModel = styled(Box)`
   background-color: #151414;
   padding: 10px;
@@ -51,30 +53,54 @@ const StyledTextField = {
     "&.Mui-focused fieldset": {
       borderColor: "transparent",
     },
-  
   },
-  boxShadow: "0 0 10px rgba(255, 255, 255, 0.1)"
+  boxShadow: "0 0 10px rgba(255, 255, 255, 0.1)",
 };
 
-// Options
-const genreOptions = ["Action", "Comedy", "Horror", "Romance", "Thriller", "Animation", "Drama"];
 const yearOptions = Array.from({ length: 30 }, (_, i) => `${2025 - i}`);
-const actorOptions = ["Tom Cruise", "Scarlett Johansson", "Dwayne Johnson", "Emma Watson"];
+const ratingOptions = Array.from({ length: 10 }, (_, i) => `${10 - i}`);
 
 const SearchBar = () => {
   const [searchText, setSearchText] = useState("");
   const [genre, setGenre] = useState(null);
+  const [genreId, setGenreId] = useState(null);
   const [year, setYear] = useState(null);
-  const [actor, setActor] = useState(null);
+  const [rating, setRating] = useState(null);
+  const [genreOptions, setGenreOptions] = useState([]);
+
+  const dispatch = useDispatch();
+
+  const API_KEY = "27bd19d8fe0c86f850b375dbfe98c9cd"; // Your TMDB API key
+
+  // Fetch genres from TMDB
+  const fetchGenres = async () => {
+    try {
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`
+      );
+      const genres = response.data.genres;
+      const formattedGenres = genres.map((genre) => ({
+        label: genre.name,
+        id: genre.id,
+      }));
+      setGenreOptions(formattedGenres);
+    } catch (error) {
+      console.error("Error fetching genres:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchGenres();
+  }, []);
 
   const handleSearch = () => {
-    console.log("Search:", { searchText, genre, year, actor });
+    dispatch(browseMovie({searchText, genreId, year, rating}));
   };
 
   return (
     <SearchContainer>
       <Container maxWidth="md">
-        {/* Search bar with button */}
+        {/* Search bar */}
         <SearchBarModel>
           <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1 }}>
             <SearchIcon sx={{ color: "grey", mr: 1 }} />
@@ -122,11 +148,11 @@ const SearchBar = () => {
         >
           <Box sx={{ flex: 1, minWidth: "250px" }}>
             <Autocomplete
-              options={actorOptions}
-              value={actor}
-              onChange={(e, newValue) => setActor(newValue)}
+              options={ratingOptions}
+              value={rating}
+              onChange={(e, newValue) => setRating(newValue)}
               renderInput={(params) => (
-                <TextField {...params} label="Actor" sx={StyledTextField} />
+                <TextField {...params} label="Rating" sx={StyledTextField} />
               )}
             />
           </Box>
@@ -134,8 +160,12 @@ const SearchBar = () => {
           <Box sx={{ flex: 1, minWidth: "250px" }}>
             <Autocomplete
               options={genreOptions}
+              getOptionLabel={(option) => option.label}
               value={genre}
-              onChange={(e, newValue) => setGenre(newValue)}
+              onChange={(e, newValue) => {
+                setGenre(newValue);
+                setGenreId(newValue?.id || null);
+              }}
               renderInput={(params) => (
                 <TextField {...params} label="Genre" sx={StyledTextField} />
               )}
