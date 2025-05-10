@@ -76,9 +76,7 @@ const SearchBar = () => {
           />
         </SearchBarModel>
 
-        {/* Filters and Button */}
-        <Grid container spacing={2} mt={3} alignItems="center">
-          {/* Actor Filter */}
+         <Grid container spacing={2} mt={3} alignItems="center">
           <Grid item xs={12} sm={6} md={3}>
             <Autocomplete
               options={actorOptions}
