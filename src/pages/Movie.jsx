@@ -62,7 +62,7 @@ const Movie = () => {
           alignItems: "flex-start",
         }}
       >
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 , width: { xs: "100%", md: 300 }}}>
           <Box
             component="img"
             src={`https://image.tmdb.org/t/p/w500/${movieDetail?.poster_path}`}

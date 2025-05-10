@@ -41,7 +41,7 @@ const CustomCards = (props) => {
           {props.title}
         </Typography>
         <Typography variant="caption" color="white">
-          {props.release_date.slice(0,4)}
+          {props.release_date.slice(0, 4)}
         </Typography>
         <Typography variant="caption" color="white">
           ⭐ {props.vote_average.toFixed(1)}

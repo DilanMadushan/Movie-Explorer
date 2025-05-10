@@ -36,7 +36,7 @@ export const browseMovie = createAsyncThunk(
       const response = await api.get(endpoint, { params });
       const results = response.data.results || [];
 
-      // Manually filter if using search endpoint
+      // Manually filter 
       if (endpoint === "search/movie") {
         return results.filter((movie) => {
           const matchesGenre = genreId

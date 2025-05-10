@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import styled from "styled-components";
-import {browseMovie} from "../slice/BrowseSlice";
+import { browseMovie } from "../slice/BrowseSlice";
 import { useDispatch } from "react-redux";
 
 // Styled components
@@ -70,9 +70,8 @@ const SearchBar = () => {
 
   const dispatch = useDispatch();
 
-  const API_KEY = "27bd19d8fe0c86f850b375dbfe98c9cd"; // Your TMDB API key
+  const API_KEY = "27bd19d8fe0c86f850b375dbfe98c9cd";
 
-  // Fetch genres from TMDB
   const fetchGenres = async () => {
     try {
       const response = await axios.get(
@@ -94,13 +93,12 @@ const SearchBar = () => {
   }, []);
 
   const handleSearch = () => {
-    dispatch(browseMovie({searchText, genreId, year, rating}));
+    dispatch(browseMovie({ searchText, genreId, year, rating }));
   };
 
   return (
-    <SearchContainer sx={{position: "sticky", top: 63, zIndex: 1}}>
+    <SearchContainer sx={{ position: "sticky", top: 63, zIndex: 1 }}>
       <Container maxWidth="md">
-     
         <SearchBarModel>
           <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1 }}>
             <SearchIcon sx={{ color: "grey", mr: 1 }} />
