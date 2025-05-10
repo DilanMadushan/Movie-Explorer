@@ -47,7 +47,7 @@ Movie Explorer is a sleek and responsive web application designed to help you di
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/movie-explorer.git
+   git clone https://github.com/DilanMadushan/Movie-Explorer.git
    cd movie-explorer
    ```
 
