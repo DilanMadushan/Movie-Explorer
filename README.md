@@ -9,7 +9,7 @@ This document combines the information for the Movie Explorer web application.
 
 ### *Discover Your Favorite Films*
 
-![Movie Explorer Banner](https://images8.alphacoders.com/122/1221309.jpg)
+![Movie Explorer Banner](https://wallpapers.com/images/featured/avengers-vm16xv4a69smdauy.jpg)
 
 Movie Explorer is a sleek and responsive web application designed to help you discover your favorite movies. Browse trending and popular titles, easily search for specific films, build your own list of favorite movies, and refine your search with powerful filtering options.
 
