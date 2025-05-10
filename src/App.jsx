@@ -46,7 +46,7 @@ function App() {
     <>
       <Provider store={Store}>
         {/* <NavBar/> */}
-        {/* <SearchBar/> */}
+        <SearchBar/>
           {/* <Home/>
           <Movie/> */}
           <RouterProvider router={router} />

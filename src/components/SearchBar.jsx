@@ -6,46 +6,60 @@ import {
   TextField,
   Autocomplete,
   Button,
-  Grid,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import styled from "styled-components";
 
-const SearchContainer = styled(Box)({
-  backgroundColor: "#151414",
-  padding: "40px 0",
-  color: "white",
-});
+// Container wrapper
+const SearchContainer = styled(Box)`
+  background-color: #151414;
+  padding: 40px 0;
+  color: white;
+`;
 
-const SearchBarModel = styled(Box)({
-  backgroundColor: "#151414",
-  padding: "0 10px",
-  borderRadius: "8px",
-  width: "100%",
-  display: "flex",
-  alignItems: "center",
-  gap: "10px",
-  boxShadow: "0 0 10px rgba(255,255,255,0.1)",
-});
+// Search bar and button row
+const SearchBarModel = styled(Box)`
+  background-color: #151414;
+  padding: 10px;
+  border-radius: 8px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  flex-wrap: wrap;
 
-const genreOptions = [
-  "Action",
-  "Comedy",
-  "Horror",
-  "Romance",
-  "Thriller",
-  "Animation",
-  "Drama",
-];
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+`;
 
+const StyledTextField = {
+  "& label": { color: "white" },
+  "& label.Mui-focused": { color: "white" },
+  "& .MuiOutlinedInput-root": {
+    backgroundColor: "#151414",
+    borderRadius: "8px",
+    color: "white",
+    "& fieldset": {
+      borderColor: "transparent",
+    },
+    "&:hover fieldset": {
+      borderColor: "transparent",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "transparent",
+    },
+  
+  },
+  boxShadow: "0 0 10px rgba(255, 255, 255, 0.1)"
+};
+
+// Options
+const genreOptions = ["Action", "Comedy", "Horror", "Romance", "Thriller", "Animation", "Drama"];
 const yearOptions = Array.from({ length: 30 }, (_, i) => `${2025 - i}`);
-
-const actorOptions = [
-  "Tom Cruise",
-  "Scarlett Johansson",
-  "Dwayne Johnson",
-  "Emma Watson",
-];
+const actorOptions = ["Tom Cruise", "Scarlett Johansson", "Dwayne Johnson", "Emma Watson"];
 
 const SearchBar = () => {
   const [searchText, setSearchText] = useState("");
@@ -60,134 +74,85 @@ const SearchBar = () => {
   return (
     <SearchContainer>
       <Container maxWidth="md">
-        {/* Search input bar */}
+        {/* Search bar with button */}
         <SearchBarModel>
-          <SearchIcon sx={{ color: "grey" }} />
-          <InputBase
-            placeholder="Search movies..."
-            fullWidth
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
+          <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1 }}>
+            <SearchIcon sx={{ color: "grey", mr: 1 }} />
+            <InputBase
+              placeholder="Search movies..."
+              fullWidth
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              sx={{
+                height: "45px",
+                color: "white",
+                border: "none",
+              }}
+            />
+          </Box>
+          <Button
+            variant="contained"
+            onClick={handleSearch}
             sx={{
+              background: "red",
+              borderRadius: "8px",
+              px: 4,
+              fontWeight: 600,
               height: "45px",
-              color: "white",
-              border: "none",
+              textTransform: "none",
+              "&:hover": {
+                backgroundColor: "#ff3333",
+                boxShadow: "0 0 10px rgba(255, 0, 0, 0.4)",
+              },
             }}
-          />
+          >
+            Search
+          </Button>
         </SearchBarModel>
 
-         <Grid container spacing={2} mt={3} alignItems="center">
-          <Grid item xs={12} sm={6} md={3}>
+        {/* Filters */}
+        <Box
+          mt={3}
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 2,
+            justifyContent: "center",
+          }}
+        >
+          <Box sx={{ flex: 1, minWidth: "250px" }}>
             <Autocomplete
               options={actorOptions}
               value={actor}
               onChange={(e, newValue) => setActor(newValue)}
               renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Actor"
-                  sx={{
-                    "& label": { color: "white" },
-                    "& label.Mui-focused": { color: "white" },
-                    "& .MuiOutlinedInput-root": {
-                      backgroundColor: "#151414",
-                      borderRadius: "8px",
-                      "& fieldset": {
-                        borderColor: "transparent",
-                      },
-                      "&:hover fieldset": {
-                        borderColor: "transparent",
-                      },
-                      "&.Mui-focused fieldset": {
-                        borderColor: "transparent",
-                      },
-                    },
-                  }}
-                />
+                <TextField {...params} label="Actor" sx={StyledTextField} />
               )}
             />
-          </Grid>
+          </Box>
 
-          {/* Genre Filter */}
-          <Grid item xs={12} sm={6} md={3}>
+          <Box sx={{ flex: 1, minWidth: "250px" }}>
             <Autocomplete
               options={genreOptions}
               value={genre}
               onChange={(e, newValue) => setGenre(newValue)}
               renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Genre"
-                  sx={{
-                    "& label": { color: "white" },
-                    "& label.Mui-focused": { color: "white" },
-                    "& .MuiOutlinedInput-root": {
-                      backgroundColor: "#151414",
-                      borderRadius: "8px",
-                      "& fieldset": {
-                        borderColor: "transparent",
-                      },
-                      "&:hover fieldset": {
-                        borderColor: "transparent",
-                      },
-                      "&.Mui-focused fieldset": {
-                        borderColor: "transparent",
-                      },
-                    },
-                  }}
-                />
+                <TextField {...params} label="Genre" sx={StyledTextField} />
               )}
             />
-          </Grid>
+          </Box>
 
-          {/* Year Filter */}
-          <Grid item xs={12} sm={6} md={3}>
+          <Box sx={{ flex: 1, minWidth: "250px" }}>
             <Autocomplete
               options={yearOptions}
               value={year}
               onChange={(e, newValue) => setYear(newValue)}
               renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Year"
-                  sx={{
-                    "& label": { color: "white" },
-                    "& label.Mui-focused": { color: "white" },
-                    "& .MuiOutlinedInput-root": {
-                      backgroundColor: "#151414",
-                      borderRadius: "8px",
-                      "& fieldset": {
-                        borderColor: "transparent",
-                      },
-                      "&:hover fieldset": {
-                        borderColor: "transparent",
-                      },
-                      "&.Mui-focused fieldset": {
-                        borderColor: "transparent",
-                      },
-                    },
-                  }}
-                />
+                <TextField {...params} label="Year" sx={StyledTextField} />
               )}
             />
-          </Grid>
-
-          {/* Search Button */}
-          <Grid item xs={12} sm={6} md={3}>
-            <Button
-              fullWidth
-              variant="contained"
-              sx={{
-                height: "56px",
-                backgroundColor: "red",
-                borderRadius: "8px",
-              }}
-              onClick={handleSearch}
-            >
-              Search
-            </Button>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
       </Container>
     </SearchContainer>
   );

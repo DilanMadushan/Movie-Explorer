@@ -14,7 +14,7 @@ const FavouriteMovies = () => {
   const favourites = useSelector((state) => state.favourite);
 
   return (
-  <Container sx={{ py: 4, backgroundColor: "#1D1D1D" }}>
+  <Container sx={{ py: 4, backgroundColor: "#1D1D1D"}}>
       <Typography variant="h4" color="white" marginBottom={3} marginLeft={3} sx={{fontSize:{md:'40px',xs:'30px'}}}>
         Top Reted Movies
       </Typography>
@@ -26,7 +26,7 @@ const FavouriteMovies = () => {
       ) : (
 
         <>
-          <Grid container spacing={2} justifyContent="center">
+          <Grid container spacing={2} justifyContent="center" >
             {favourites.map((movie) => (
               <CustomCard
                 id={movie.id}
