@@ -13,10 +13,9 @@ import CustomCard from "../components/Card";
 const FavouriteMovies = () => {
   const favourites = useSelector((state) => state.favourite);
 
-  return (
-    <Container sx={{ marginTop: 4 }}>
-      <Typography variant="h4" sx={{ color: "white", marginBottom: 3 }}>
-        Your Favourite Movies
+  return (<Container sx={{ py: 4, backgroundColor: "#1D1D1D" }}>
+      <Typography variant="h4" color="white" marginBottom={3} marginLeft={3} sx={{fontSize:{md:'40px',xs:'30px'}}}>
+        Top Reted Movies
       </Typography>
 
       {favourites.length === 0 ? (
@@ -24,22 +23,25 @@ const FavouriteMovies = () => {
           You haven't added any favorites yet.
         </Typography>
       ) : (
-        <Grid container spacing={3}>
-          {favourites.map((movie) => (
-            <Grid item xs={12} sm={6} md={4} key={movie.id}>
+
+        <>
+          <Grid container spacing={2} justifyContent="center">
+            {favourites.map((movie) => (
               <CustomCard
-              id={movie.id}
-              poster_path={movie.poster_path}
-              title={movie.title}
-              release_date={movie.release_date}
-              vote_average={movie.vote_average}
-              overview={movie.overview}
-            />
-            </Grid>
-          ))}
-        </Grid>
+                id={movie.id}
+                poster_path={movie.poster_path}
+                title={movie.title}
+                release_date={movie.release_date}
+                vote_average={movie.vote_average}
+                overview={movie.overview}
+              />
+            ))}
+          </Grid>
+        </>
+        
       )}
     </Container>
+    
   );
 };
 

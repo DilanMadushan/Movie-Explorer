@@ -29,7 +29,7 @@ const Home = () => {
 
   return (
     <Container sx={{ py: 4, backgroundColor: "#1D1D1D" }}>
-      <Typography variant="h4" color="white" marginBottom={3} marginLeft={3}>
+      <Typography variant="h4" color="white" marginBottom={3} marginLeft={3} sx={{fontSize:{md:'40px',xs:'30px'}}}>
         Top Reted Movies
       </Typography>
 
@@ -51,7 +51,7 @@ const Home = () => {
             ))}
           </Grid>
         </>
-        
+
       )}
     </Container>
   );

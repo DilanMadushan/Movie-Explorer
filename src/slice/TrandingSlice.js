@@ -13,7 +13,7 @@ export const getAllTrandingMovies=createAsyncThunk(
     '/movie/trnding',
     async()=>{
         try{
-            const response = await api.get('movie/popular', {
+            const response = await api.get('trending/movie/day', {
         params: {
           api_key: API_KEY,
         },
